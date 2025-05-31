@@ -1,0 +1,21 @@
+{
+    "supersense": "APPROXIMATOR",
+    "preposition_type": {
+        "approx": [
+            "about",
+            "around",
+            "in the vicinity of"
+        ],
+        "scalar_comparison": [
+            "over",
+            "under", 
+            "between",
+            "at least",
+            "at most",
+            "more than",
+            "less than",
+            "greater than",
+            "fewer than"
+        ]
+    }
+}
