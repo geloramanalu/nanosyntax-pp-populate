@@ -1,7 +1,7 @@
 {
     "atomic_p": {
         "behind": {
-            "isAtomicMorph": true,
+            "isAtomicMorph": false,
             "class": "PROJECTIVE",
             "spellOutHEAD": [
                 "K",
@@ -11,7 +11,7 @@
                 "*Proj",
                 "*Deg"
             ],
-            "path_p_morphology": "none",
+            "path_p_morphology": ["LOC", "GOAL", "SOURCE"],
             "measure_allowed": true
         },
         "above": {
@@ -29,7 +29,7 @@
             "measure_allowed": true
         },
         "below": {
-            "isAtomicMorph": true,
+            "isAtomicMorph": false,
             "class": "PROJECTIVE",
             "spellOutHEAD": [
                 "K",
@@ -43,13 +43,13 @@
             "measure_allowed": true
         },
         "beyond": {
-            "isAtomicMorph": true,
+            "isAtomicMorph": false,
             "class": "PROJECTIVE",
             "spellOutHEAD": [
                 "K",
                 {
                     "AxPart": [
-                        "DISTAL"
+                        "[DISTAL]"
                     ]
                 },
                 "*Proj",
@@ -66,7 +66,7 @@
                     "K": "of"
                 },
                 {
-                    "AxPart": "front"
+                    "AxPart": "[FRONT]"
                 },
                 "*Proj",
                 "*Deg",
@@ -78,7 +78,7 @@
             "measure_allowed": true
         },
         "inside":{
-            "isAtomicMorph": true,
+            "isAtomicMorph": false,
             "class": "PROJECTIVE",
             "spellOutHEAD":[
                "K",
@@ -90,7 +90,7 @@
             "measure_allowed": true
         },
         "outside":{
-            "isAtomicMorph": true,
+            "isAtomicMorph": false,
             "class": "PROJECTIVE",
             "spellOutHEAD":[
                "K",
@@ -157,9 +157,9 @@
             "class": "BOUNDED",
             "spellOutHEAD":[
                 "K",
-                {"AxPart":["PROXIMAL"]}, 
-                "*Proj",
-                "*Deg"
+                {"AxPart":"[PROXIMAL]"}, 
+                "*Deg",
+                "*Proj"
 
             ],
             "path_p_morphology": "none",
@@ -167,84 +167,111 @@
         },
         "next to":{
             "isAtomicMorph": false,
-            "class": "",
+            "class": "BOUNDED",
             "spellOutHEAD":[
-
+                "K",
+                {"AxPart":"[PROXIMAL]"},
+                "*Deg",
+                "*Proj"
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "GOAL",
+            "measure_allowed": false
         },
         "upon":{
-            "isAtomicMorph": false,
-            "class": "",
+            "isAtomicMorph": true,
+            "class": "BOUNDED",
             "spellOutHEAD":[
-
+                "K",
+                {"AxPart": "[SURFACE]"},
+                "*Proj"
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "none",
+            "measure_allowed": false
         },
         "across":{
-            "isAtomicMorph": "",
+            "isAtomicMorph": false,
             "class": "EXTENDED",
             "spellOutHEAD":[
-
+                "K",
+                {"AxPart":"[EDGE]"},
+                "*Proj",
+                "*Deg"
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "GOAL",
+            "measure_allowed": true
         },
         "along":{
-            "isAtomicMorph": "",
+            "isAtomicMorph": false,
             "class": "EXTENDED",
             "spellOutHEAD":[
-
+                "K",
+                {"AxPart":"[EDGE]"},
+                "*Proj",
+                "*Deg"
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "none",
+            "measure_allowed": true
         },
         "around":{
-            "isAtomicMorph": "",
+            "isAtomicMorph": "false",
             "class": "EXTENDED",
             "spellOutHEAD":[
+                "K",
+                {"AxPart":"[PERIPHERY]"},
+                "*Proj",
+                "*Deg"
 
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "none",
+            "measure_allowed": true
         },
         "over":{
-            "isAtomicMorph": "",
+            "isAtomicMorph": true,
             "class": "EXTENDED",
             "spellOutHEAD":[
-
+                "K",
+                {"AxPart":"[SURFACE]"},
+                "*Deg"
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "none",
+            "measure_allowed": true
         },
         "past":{
-            "isAtomicMorph": "",
+            "isAtomicMorph": true,
             "class": "EXTENDED",
             "spellOutHEAD":[
-
+                "K",
+                {"AxPart":"[DISTAL]"},
+                "*Proj",
+                "*Deg"
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "ROUTE",
+            "measure_allowed": true
         },
         "through":{
-            "isAtomicMorph": "",
+            "isAtomicMorph": true,
             "class": "EXTENDED",
             "spellOutHEAD":[
-
+                "K",
+                {"AxPart":"[IN]"},
+                "*Proj",
+                "*Deg"
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "ROUTE",
+            "measure_allowed": "true"
         },
         "under":{
-            "isAtomicMorph": "",
+            "isAtomicMorph": true,
             "class": "EXTENDED",
             "spellOutHEAD":[
+                "K",
+                {"AxPart":"[DOWN]"},
+                "*Proj",
+                "*Deg"
 
             ],
-            "path_p_morphology": "",
-            "measure_allowed": ""
+            "path_p_morphology": "LOC",
+            "measure_allowed": true
         },
         "up":{
             "isAtomicMorph": "",
