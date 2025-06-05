@@ -70,7 +70,9 @@
                 {
                     "AxPart": "[FRONT]"
                 },
-                "*Proj",
+                {
+                    "Proj": "in"
+                },
                 "*Deg",
                 {
                     "p": "in"
@@ -192,7 +194,8 @@
                 "p"
             ],
             "path_p_morphology": "none",
-            "measure_allowed": false
+            "measure_allowed": false,
+            "synonym":["betwixt"]
         },
         "near": {
             "isAtomicMorph": true,
@@ -393,26 +396,30 @@
             "spellOutHEAD": [
                 "*K",
                 "*Det",
+                "*AxPart",
                 "*Deg",
                 "*Proj",
-                "*AxPart",
                 "p",
-                "*path"
+                "*Path"
             ],
-            "path_p_morphology": "LOC",
+            "path_p_morphology": [
+                "LOC",
+                "GOAL"
+            ],
             "measure_allowed": false
         },
+
         "out": {
             "isAtomicMorph": true,
             "class": "PARTICLE",
             "spellOutHEAD": [
-                "*K",
+                 "*K",
                 "*Det",
+                "*AxPart",
                 "*Deg",
                 "*Proj",
-                "*AxPart",
                 "p",
-                "*path"
+                "*Path"
             ],
             "path_p_morphology": "LOC",
             "measure_allowed": false

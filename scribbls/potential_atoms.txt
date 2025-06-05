@@ -15,3 +15,9 @@ atop
 
 ====
 
+approximation phrases = [ "just about",
+        "some",
+        "roughly",
+        "more or less",
+        "or so",
+        "round"c]

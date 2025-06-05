@@ -1,35 +1,25 @@
 {
     "above": [
-        "above",
         "higher up",
         "in a higher place",
         "to a higher place"
     ],
     "across": [
-        "across",
         "crosswise",
         "crossways"
     ],
     "against": [],
     "along": [
-        "along",
         "on"
     ],
     "among": [],
     "around": [
         "about",
-        "around",
         "approximately",
-        "close to",
-        "just about",
-        "some",
-        "roughly",
-        "more or less",
-        "or so",
-        "round"
+        "close to"
+       
     ],
     "away": [
-        "away",
         "outside",
         "off",
         "forth",
