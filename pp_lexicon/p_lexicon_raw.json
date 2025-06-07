@@ -81,6 +81,15 @@
         "path_p_morphology": "LOC",
         "measure_allowed": false
     },
+    "onto": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
     "after": {
         "isAtomicMorph": true,
         "class": "PROJECTIVE",
@@ -126,6 +135,24 @@
         ],
         "path_p_morphology": "LOC",
         "measure_allowed": false
+    },
+    "into": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "upside": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
     },
     "for": {
         "isAtomicMorph": true,
@@ -221,6 +248,15 @@
         "path_p_morphology": "ROUTE",
         "measure_allowed": true
     },
+    "aside": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
     "back": {
         "isAtomicMorph": true,
         "class": "PROJECTIVE",
@@ -234,6 +270,24 @@
         ],
         "path_p_morphology": "LOC",
         "measure_allowed": true
+    },
+    "nearest": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "betwixt": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
     },
     "at": {
         "isAtomicMorph": true,
@@ -252,13 +306,22 @@
         ],
         "measure_allowed": false
     },
+    "ahead": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
     "astern": {
         "isAtomicMorph": true,
         "class": "PROJECTIVE",
         "spellOutHEAD": [
             "K",
             {
-                "AxPart": "[BACK_NAUTICAL]"
+                "AxPart": "[BACK]"
             },
             "*Deg",
             "*Proj"
@@ -272,7 +335,7 @@
         "spellOutHEAD": [
             "K",
             {
-                "AxPart": "[BACK_SEQUENTIAL_DYNAMIC]"
+                "AxPart": "[BACK]"
             },
             "*Deg",
             "*Proj"
@@ -299,6 +362,15 @@
         "path_p_morphology": "LOC",
         "measure_allowed": false
     },
+    "within": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
     "prior": {
         "isAtomicMorph": true,
         "class": "PROJECTIVE",
@@ -315,6 +387,15 @@
             "GOAL"
         ],
         "measure_allowed": true
+    },
+    "without": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
     },
     "front": {
         "isAtomicMorph": true,
@@ -439,6 +520,118 @@
         "path_p_morphology": "LOC",
         "measure_allowed": false
     },
+    "towards": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": "",
+        "synonym": [
+            "toward",
+            "to"
+        ]
+    },
+    "except": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "heart": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "afore": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "tween": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "aboard": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "throughout": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "foot": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "nearer": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "nigh": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "alongside": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "virtue": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
     "next": {
         "isAtomicMorph": true,
         "class": "BOUNDED",
@@ -457,6 +650,24 @@
         ],
         "measure_allowed": false
     },
+    "toward": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "amongst": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
     "side": {
         "isAtomicMorph": true,
         "class": "PROJECTIVE",
@@ -470,6 +681,15 @@
         ],
         "path_p_morphology": "LOC",
         "measure_allowed": true
+    },
+    "the": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
     },
     "of": {
         "isAtomicMorph": true,
@@ -511,6 +731,24 @@
         ],
         "path_p_morphology": "LOC",
         "measure_allowed": false
+    },
+    "adjacent": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "underneath": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
     },
     "skin": {
         "isAtomicMorph": true,
@@ -558,6 +796,15 @@
         "path_p_morphology": "LOC",
         "measure_allowed": false
     },
+    "plus": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
     "to": {
         "isAtomicMorph": true,
         "class": "EXTENDED",
@@ -587,6 +834,33 @@
         ],
         "path_p_morphology": "LOC",
         "measure_allowed": false
+    },
+    "subsequent": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "addition": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
+    },
+    "cross": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
     },
     "surface": {
         "isAtomicMorph": true,
@@ -628,6 +902,15 @@
         ],
         "path_p_morphology": "LOC",
         "measure_allowed": false
+    },
+    "underside": {
+        "isAtomicMorph": "",
+        "class": "",
+        "spellOutHEAD": [
+            ""
+        ],
+        "path_p_morphology": "",
+        "measure_allowed": ""
     },
     "middle": {
         "isAtomicMorph": true,

@@ -1,5 +1,5 @@
 {
-    "atomic_p": {
+    
         "behind": {
             "isAtomicMorph": false,
             "class": "PROJECTIVE",
@@ -440,4 +440,3 @@
             "measure_allowed": false
         }
     }
-}
