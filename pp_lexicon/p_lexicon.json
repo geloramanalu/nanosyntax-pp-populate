@@ -714,5 +714,55 @@
         ],
         "path_p_morphology": "LOC",
         "measure_allowed": false
+    },
+    "foot": {
+        "isAtomicMorph": true,
+        "class": "PROJECTIVE",
+        "spellOutHEAD": [
+            "K",
+            {
+                "AxPart": "[BACK_SEQUENTIAL]"
+            },
+            "*Proj",
+            "*Deg"
+        ],
+        "path_p_morphology": [
+            "LOC",
+            "GOAL"
+        ],
+        "measure_allowed": true
+    },
+    "subsequent": {
+        "isAtomicMorph": true,
+        "class": "PROJECTIVE",
+        "spellOutHEAD": [
+            "K",
+            {
+                "AxPart": "[BACK]"
+            },
+            "*Proj",
+            "*Deg"
+        ],
+        "path_p_morphology": [
+            "LOC",
+            "GOAL"
+        ],
+        "measure_allowed": true
+    },
+    "heart": {
+        "isAtomicMorph": true,
+        "class": "BOUNDED",
+        "spellOutHEAD": [
+            "*K",
+            {
+                "AxPart": "[CENTER]"
+            },
+            "*Deg",
+            "*Proj",
+            "*p",
+            "*Path"
+        ],
+        "path_p_morphology": "LOC",
+        "measure_allowed": false
     }
 }

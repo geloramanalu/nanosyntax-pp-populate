@@ -1,0 +1,1535 @@
+{
+  "aboard": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      {
+        "AxPart": "[SURFACE]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "adjacent": {
+    "isAtomicMorph": false,
+    "class": [
+      "NOT_SPATIAL"
+    ],
+    "spellOutHEAD": [],
+    "path_p_morphology": [
+      "none"
+    ],
+    "measure_allowed": false,
+    "unlexicalized": [
+      "djacent"
+    ]
+  },
+  "adjacent to": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "djacent"
+    ]
+  },
+  "afore": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      {
+        "AxPart": "[BIFURCATION]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "astride"
+      },
+      {
+        "Path": "for"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL",
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "ahead": {
+    "isAtomicMorph": false,
+    "class": [
+      "NOT_SPATIAL"
+    ],
+    "spellOutHEAD": [],
+    "path_p_morphology": [
+      "none"
+    ],
+    "measure_allowed": false,
+    "unlexicalized": [
+      "head"
+    ]
+  },
+  "ahead of": {
+    "isAtomicMorph": false,
+    "class": [
+      "NOT_SPATIAL",
+      "NOT_SPATIAL"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "of"
+      }
+    ],
+    "path_p_morphology": [
+      "none"
+    ],
+    "measure_allowed": false,
+    "unlexicalized": [
+      "head"
+    ]
+  },
+  "alongside": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "along"
+      },
+      {
+        "K": "side"
+      },
+      {
+        "AxPart": "[EDGE]"
+      },
+      {
+        "AxPart": "[SIDE]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "amongst": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "*Deg": "[PROXIMAL]"
+      },
+      {
+        "K": "among"
+      },
+      {
+        "AxPart": "[BIFURCATION]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "among"
+      },
+      {
+        "p": "astride"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "apart from": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      {
+        "AxPart": "[OUT]"
+      },
+      {
+        "Deg": "[DISTAL]"
+      },
+      "*Proj",
+      {
+        "p": "apart"
+      },
+      {
+        "Path": "from"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "SOURCE"
+    ],
+    "measure_allowed": true
+  },
+  "as far as": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "BOUNDED",
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "far"
+      },
+      {
+        "AxPart": "[BIFURCATION]"
+      },
+      {
+        "Deg": "[DISTAL]"
+      },
+      "*Proj",
+      {
+        "p": "astride"
+      },
+      {
+        "p": "far"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "aside": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "side"
+      },
+      {
+        "AxPart": "[SIDE]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "aside from": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "side"
+      },
+      {
+        "AxPart": "[SIDE]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "from"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "SOURCE"
+    ],
+    "measure_allowed": true
+  },
+  "astern of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "astern"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[BACK_NAUTICAL]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "at the back of": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "back"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[BACK]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "at"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "the"
+    ]
+  },
+  "at the rear of": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "rear"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[BACK]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "at"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "the"
+    ]
+  },
+  "atop": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      {
+        "AxPart": "[TOP]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "at"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": false
+  },
+  "betwixt": {
+    "isAtomicMorph": false,
+    "class": null,
+    "spellOutHEAD": [],
+    "path_p_morphology": null,
+    "measure_allowed": false,
+    "unlexicalized": [
+      "betwixt"
+    ]
+  },
+  "by means of": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "of"
+      },
+      "*AxPart",
+      {
+        "Deg": "[PROXIMAL]"
+      },
+      "*Proj",
+      {
+        "p": "by"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "ROUTE"
+    ],
+    "measure_allowed": false,
+    "unlexicalized": [
+      "means"
+    ]
+  },
+  "by virtue of": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "of"
+      },
+      "*AxPart",
+      {
+        "Deg": "[PROXIMAL]"
+      },
+      "*Proj",
+      {
+        "p": "by"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "ROUTE"
+    ],
+    "measure_allowed": false,
+    "unlexicalized": [
+      "virtue"
+    ]
+  },
+  "close to": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "close"
+      },
+      "*AxPart",
+      {
+        "Deg": "[PROXIMAL]"
+      },
+      "*Proj",
+      {
+        "p": "close"
+      },
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "cross": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "across"
+      },
+      {
+        "AxPart": "[EDGE]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "except": {
+    "isAtomicMorph": false,
+    "class": null,
+    "spellOutHEAD": [],
+    "path_p_morphology": null,
+    "measure_allowed": false,
+    "unlexicalized": [
+      "except"
+    ]
+  },
+  "except for": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "for"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "except"
+    ]
+  },
+  "far from": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "far"
+      },
+      "*AxPart",
+      {
+        "Deg": "[DISTAL]"
+      },
+      "*Proj",
+      {
+        "p": "far"
+      },
+      {
+        "Path": "from"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "SOURCE"
+    ],
+    "measure_allowed": true
+  },
+  "foot": {
+    "isAtomicMorph": true,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "foot"
+      },
+      {
+        "AxPart": "[BACK_SEQUENTIAL]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "from behind": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "behind"
+      },
+      {
+        "AxPart": "[BACK]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "from"
+      }
+    ],
+    "path_p_morphology": [
+      "SOURCE",
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "from under": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "under"
+      },
+      {
+        "AxPart": "[DOWN]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "from"
+      }
+    ],
+    "path_p_morphology": [
+      "SOURCE",
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "heart": {
+    "isAtomicMorph": true,
+    "class": [
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      {
+        "AxPart": "[CENTER]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "in a higher place": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      {
+        "K": "higher"
+      },
+      {
+        "AxPart": "[UP]"
+      },
+      {
+        "Deg": [
+          "[GRADIENT]",
+          "[POSITIVE]"
+        ]
+      },
+      "*Proj",
+      {
+        "p": "in"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "place"
+    ]
+  },
+  "in addition to": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "in"
+      },
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "ddition"
+    ]
+  },
+  "in place of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      {
+        "K": "of"
+      },
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "in"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": false,
+    "unlexicalized": [
+      "place"
+    ]
+  },
+  "inside of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "inside"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[IN]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "into": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "in"
+      },
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "left of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "left"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[LEFT]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      ""
+    ],
+    "measure_allowed": true
+  },
+  "near to": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "near"
+      },
+      "*AxPart",
+      {
+        "Deg": "[PROXIMAL]"
+      },
+      "*Proj",
+      {
+        "p": "near"
+      },
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "nearer": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "near"
+      },
+      {
+        "AxPart": "[EDGE]"
+      },
+      {
+        "Deg": "[PROXIMAL]"
+      },
+      "*Proj",
+      {
+        "p": "near"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "nearest": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "near"
+      },
+      "*AxPart",
+      {
+        "Deg": "[PROXIMAL]"
+      },
+      "*Proj",
+      {
+        "p": "near"
+      }
+    ],
+    "path_p_morphology": [
+      "none"
+    ],
+    "measure_allowed": false,
+    "unlexicalized": [
+      "est"
+    ]
+  },
+  "nigh": {
+    "isAtomicMorph": false,
+    "class": null,
+    "spellOutHEAD": [],
+    "path_p_morphology": null,
+    "measure_allowed": false,
+    "unlexicalized": [
+      "nigh"
+    ]
+  },
+  "on top of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[TOP]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "on"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "onto": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "on"
+      },
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "opposite of": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "opposite"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[FRONT]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "opposite"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "opposite to": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "opposite"
+      },
+      {
+        "AxPart": "[FRONT]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "opposite"
+      },
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "out from": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "out"
+      },
+      {
+        "Path": "from"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "SOURCE"
+    ],
+    "measure_allowed": true
+  },
+  "out of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      {
+        "K": "of"
+      },
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "out"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  },
+  "outside of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "outside"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[OUT]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "plus": {
+    "isAtomicMorph": false,
+    "class": null,
+    "spellOutHEAD": [],
+    "path_p_morphology": null,
+    "measure_allowed": false,
+    "unlexicalized": [
+      "plus"
+    ]
+  },
+  "prior to": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "prior"
+      },
+      {
+        "AxPart": "[fRONT]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "right of": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "right"
+      },
+      {
+        "K": "of"
+      },
+      {
+        "AxPart": "[RIGHT]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      ""
+    ],
+    "measure_allowed": true
+  },
+  "subsequent": {
+    "isAtomicMorph": true,
+    "class": [
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "subsequent"
+      },
+      {
+        "AxPart": "[BACK]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "subsequent to": {
+    "isAtomicMorph": false,
+    "class": [
+      "PROJECTIVE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "subsequent"
+      },
+      {
+        "AxPart": "[BACK]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "throughout": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "PARTICLE"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      {
+        "K": "through"
+      },
+      {
+        "AxPart": "[IN]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "out"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "ROUTE",
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "to a higher place": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "higher"
+      },
+      {
+        "AxPart": "[UP]"
+      },
+      {
+        "Deg": [
+          "[GRADIENT]",
+          "[POSITIVE]"
+        ]
+      },
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL",
+      "LOC"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "place"
+    ]
+  },
+  "to behind": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "behind"
+      },
+      {
+        "AxPart": "[BACK]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL",
+      "LOC",
+      "SOURCE"
+    ],
+    "measure_allowed": true
+  },
+  "to under": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "under"
+      },
+      {
+        "AxPart": "[DOWN]"
+      },
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL",
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "toward": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "ward"
+    ]
+  },
+  "towards": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      "*p",
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "GOAL"
+    ],
+    "measure_allowed": true,
+    "unlexicalized": [
+      "wards"
+    ]
+  },
+  "tween": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "between"
+      },
+      {
+        "AxPart": "[BIFURCATION]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "between"
+      }
+    ],
+    "path_p_morphology": [
+      "none"
+    ],
+    "measure_allowed": false
+  },
+  "underneath": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "under"
+      },
+      {
+        "K": "beneath"
+      },
+      {
+        "AxPart": "[DOWN]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "beneath"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "underside": {
+    "isAtomicMorph": false,
+    "class": [
+      "EXTENDED",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "under"
+      },
+      {
+        "K": "side"
+      },
+      {
+        "AxPart": "[DOWN]"
+      },
+      {
+        "AxPart": "[SIDE]"
+      },
+      "*Deg",
+      "*Proj"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": true
+  },
+  "up to": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "EXTENDED"
+    ],
+    "spellOutHEAD": [
+      "*K",
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "up"
+      },
+      {
+        "Path": "to"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "upside": {
+    "isAtomicMorph": false,
+    "class": [
+      "PARTICLE",
+      "PROJECTIVE"
+    ],
+    "spellOutHEAD": [
+      {
+        "K": "side"
+      },
+      {
+        "AxPart": "[SIDE]"
+      },
+      "*Deg",
+      "*Proj",
+      {
+        "p": "up"
+      }
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": true
+  },
+  "within": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "PARTICLE"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      {
+        "K": "with"
+      },
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "with"
+      },
+      {
+        "p": "in"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC",
+      "GOAL"
+    ],
+    "measure_allowed": false
+  },
+  "without": {
+    "isAtomicMorph": false,
+    "class": [
+      "BOUNDED",
+      "PARTICLE"
+    ],
+    "spellOutHEAD": [
+      "*Det",
+      {
+        "K": "with"
+      },
+      "*AxPart",
+      "*Deg",
+      "*Proj",
+      {
+        "p": "with"
+      },
+      {
+        "p": "out"
+      },
+      "*Path"
+    ],
+    "path_p_morphology": [
+      "LOC"
+    ],
+    "measure_allowed": false
+  }
+}

@@ -370,7 +370,7 @@
                 "*Proj",
                 "*AxPart",
                 "p",
-                "*path"
+                "*Path"
             ],
             "path_p_morphology": "LOC",
             "measure_allowed": false

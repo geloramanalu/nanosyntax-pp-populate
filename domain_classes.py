@@ -1,97 +1,14 @@
 import json
 from typing import List, Dict, Optional
 import nltk
+import re
 
 # Load JSON helpers
 def load_json(path: str) -> Dict:
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-# Base Node for Nanosyntax tree
-class NSNode:
-    def __init__(self, label: str, features: Optional[List] = None):
-        self.label = label
-        self.features = []
-        # features here are morphological annotations, not lexicalization cues
-        for f in (features or []):
-            if f is None:
-                continue
-            if isinstance(f, str):
-                # strip star if present
-                value = f.lstrip('*')
-            elif isinstance(f, dict):
-                # represent morphological dict as 'key:value'
-                key = next(iter(f.keys()))
-                value = f"{key}:{f[key]}"
-            else:
-                value = str(f)
-            if value:
-                self.features.append(value)
-        self.children: List[NSNode] = []
-
-    def add_child(self, node: 'NSNode'):
-        self.children.append(node)
-
-    def find_nodes(self, label: str) -> List['NSNode']:
-        matches = []
-        if self.label == label:
-            matches.append(self)
-        for c in self.children:
-            matches.extend(c.find_nodes(label))
-        return matches
-
-    def to_nltk_tree(self) -> nltk.Tree:
-        if self.label == 'PathP' or self.label == 'PlaceP':
-            lbl = self.label
-        else:
-            lbl = f"{self.label}{{{' '.join(self.features)}}}" if self.features else self.label
-        # lbl = self.label
-        return nltk.Tree(lbl, [child.to_nltk_tree() for child in self.children])
-
-    def __repr__(self, level=0):
-        indent = '  ' * level
-        feats = f" {self.features}" if self.features else ''
-        s = f"{indent}{self.label}{feats}\n"
-        for c in self.children:
-            s += c.__repr__(level + 1)
-        return s
-
-# Specific syntactic categories based on Svenonius hierarchy
-class D(NSNode):
-    def __init__(self, features=None):
-        super().__init__('D', features)
-
-class K(NSNode):
-    def __init__(self, features=None):
-        super().__init__('K', features)
-        self.add_child(D())
-
-class AxPart(NSNode):
-    def __init__(self, features=None):
-        super().__init__('AxPart', features)
-        self.add_child(K())
-
-class Proj(NSNode):
-    def __init__(self, features=None):
-        super().__init__('Proj', features)
-        self.add_child(AxPart())
-
-class Deg(NSNode):
-    def __init__(self, features=None):
-        super().__init__('Deg', features)
-        self.add_child(Proj())
-
-class PSpatial(NSNode):
-    def __init__(self, domain: str, features=None):
-        super().__init__(domain, features)
-        # Build the standard spine
-        if domain == 'PathP':
-            self.add_child(Deg())
-            self.add_child(NSNode('Path'))
-        else:
-            self.add_child(Deg())
-
-# Classification function
+# Semantic classification function
 def classify_pp(head: str,
                 path_set: set,
                 place_set: set,
@@ -100,55 +17,75 @@ def classify_pp(head: str,
         return 'PathP'
     if head in place_set:
         return 'PlaceP'
-    entry = lex.get(head, {})
-    roles = set(entry.get('path_p_morphology', []))
-    if roles & {'GOAL', 'SOURCE', 'ROUTE'}:
-        return 'PathP'
-    return 'PlaceP'
+    roles = set(lex.get(head, {}).get('path_p_morphology', []))
+    return 'PathP' if roles & {'GOAL','SOURCE','ROUTE'} else 'PlaceP'
 
-# PP Decomposer class
-class PPDecomposer:
-    def __init__(self,
-                 atomic_path: str,
-                 p_lexicon_path: str,
-                 complex_path: str,
-                 path_set: set,
-                 place_set: set):
-        self.atomic = load_json(atomic_path)
-        self.plex = load_json(p_lexicon_path)
-        self.complex = load_json(complex_path)
-        self.path_set = path_set
-        self.place_set = place_set
-        # merge lexicons: atomic overrides p_lex
-        self.lex = {**self.plex, **self.atomic}
-        self.lex_keys = set(self.lex.keys())
+# Node class for Nanosyntax tree
+typing_NSNode = None  # forward
+class NSNode:
+    def __init__(self, label: str, features: Optional[List] = None):
+        self.label = label
+        self.features: List[str] = []
+        self.children: List['NSNode'] = []
+        for f in (features or []):
+            if isinstance(f, str):
+                # preserve '*' for non-overt cues
+                self.features.append(f)
+            elif isinstance(f, dict):
+                # dict keys are overt cues
+                self.features.append(next(iter(f.keys())))
 
-    def _morph_segment(self, token: str) -> List[str]:
-        n = len(token)
-        # DP table to store valid segmentations from each index
-        dp = [None] * (n + 1)
-        dp[n] = []  # Base case: empty string has one valid segmentation (empty list)
+    def add_child(self, node: 'NSNode'):
+        self.children.append(node)
 
-        for i in range(n - 1, -1, -1):
-            for j in range(i + 1, n + 1):
-                sub = token[i:j]
-                # If we found a morpheme and the rest of the string can also be segmented
-                if sub in self.lex_keys and dp[j] is not None:
-                    dp[i] = [sub] + dp[j]
-                    break  # Found the longest possible morpheme starting at i, move to i-1
-        
-        # If dp[0] is not None, we found a full segmentation
-        if dp[0] is not None:
-            return dp[0]
-        else:
-            # Otherwise, the token cannot be fully segmented. Return it as a single unit.
-            return [token]
+    def find_nodes(self, label: str) -> List['NSNode']:
+        result = []
+        if self.label == label:
+            result.append(self)
+        for c in self.children:
+            result.extend(c.find_nodes(label))
+        return result
+
+    def to_nltk_tree(self) -> nltk.Tree:
+        feat_str = ' '.join(self.features)
+        lbl = f"{self.label}{{{feat_str}}}" if self.features else self.label
+        return nltk.Tree(lbl, [c.to_nltk_tree() for c in self.children])
+
+    def __repr__(self, level=0):
+        indent = '  ' * level
+        feat_str = f" [{','.join(self.features)}]" if self.features else ''
+        s = f"{indent}{self.label}{feat_str}\n"
+        for c in self.children:
+            s += c.__repr__(level+1)
+        return s
+
+# Abstract base class for any Prepositional Phrase
+class PPBase:
+    lex: Dict[str, Dict]
+    lex_keys: set
+    path_set: set
+    place_set: set
+    SPINE = ['p', 'Deg', 'Proj', 'AxPart', 'K', 'D']
+
+    @classmethod
+    def configure(cls, lexicon: Dict[str, Dict], path_set: set, place_set: set):
+        cls.lex = lexicon
+        cls.lex_keys = set(lexicon.keys())
+        cls.path_set = path_set
+        cls.place_set = place_set
+
+    def __init__(self, raw: str):
+        self.raw = raw
+        self.tokens = self.segment(raw)
+        self.head = self.tokens[-1] if self.tokens else None
+        self.domain = classify_pp(self.head, self.path_set, self.place_set, self.lex) if self.head else 'PlaceP'
+        self.ns_root = self.build_spine()
+        self.attach_lexical_items(self.ns_root)
+        self.tree = self.ns_root.to_nltk_tree()
 
     def segment(self, pp: str) -> List[str]:
         words = pp.lower().split()
-        segments: List[str] = []
-        i = 0
-        n = len(words)
+        segments, i, n = [], 0, len(words)
         while i < n:
             match = None
             for j in range(n, i, -1):
@@ -161,73 +98,177 @@ class PPDecomposer:
                 i += len(match.split())
             else:
                 tok = words[i]
-                pieces = self._morph_segment(tok)
-                segments.extend(pieces)
+                segments.extend(self._morph_segment(tok))
                 i += 1
         return segments
 
-    def build_tree(self, pp: str) -> NSNode:
-        chunks = self.segment(pp)
-        head = chunks[-1]
-        domain = classify_pp(head, self.path_set, self.place_set, self.lex)
-        # morphological annotation for root
-        root_feats = self.lex.get(head, {}).get('spellOutHEAD', [])
-        root = PSpatial(domain, root_feats)
+    def _morph_segment(self, token: str) -> List[str]:
+        segs, i, n = [], 0, len(token)
+        while i < n:
+            sub = None
+            for j in range(n, i, -1):
+                part = token[i:j]
+                if part in self.lex_keys:
+                    sub = part
+                    break
+            if sub:
+                segs.append(sub)
+                i += len(sub)
+            else:
+                segs.append(token[i:])
+                break
+        return segs
 
-        for chunk in chunks:
-            entry = self.lex.get(chunk, {})
-            raw_feats = entry.get('spellOutHEAD', [])
-            
-            lexical_cues = [f.lstrip('*') for f in raw_feats if isinstance(f, str) and f.startswith('*')]
-            morph_feats = [f for f in raw_feats if not (isinstance(f, str) and f.startswith('*'))]
-            
-            # Create a single node for the chunk with all its morphological features
-            node_to_place = NSNode(chunk, morph_feats)
-            
-            placed = False
-            # Attempt to place the node using lexical cues
-            if lexical_cues:
-                # Use the first cue to find a target attachment point.
-                # This prevents attaching the same chunk multiple times.
-                target_label = lexical_cues[0]
-                target_nodes = root.find_nodes(target_label)
-                if target_nodes:
-                    # Attach the single, feature-rich node to the first target found
-                    target_nodes[0].add_child(node_to_place)
-                    placed = True
-            
-            # If the node was not placed via a cue, attach it to the root as a fallback
-            if not placed:
-                root.add_child(node_to_place)
-                
+    def build_spine(self) -> NSNode:
+        root = NSNode(self.domain)
+        current = root
+        if self.domain == 'PathP':
+            path_node = NSNode('Path')
+            current.add_child(path_node)
+            current = path_node
+        for label in self.SPINE:
+            node = NSNode(label)
+            current.add_child(node)
+            current = node
         return root
 
-    def decompose_all(self) -> Dict[str, nltk.Tree]:
-        trees = {}
-        # Sorting the list to ensure consistent output for verification
-        for pp in sorted(list(self.complex)):
-            ns_root = self.build_tree(pp)
-            trees[pp] = ns_root.to_nltk_tree()
-        return trees
+    def attach_lexical_items(self, spine: NSNode):
+        for chunk in self.tokens:
+            entry = self.lex.get(chunk, {})
+            raw_feats = entry.get('spellOutHEAD', [])
+            node = NSNode(chunk, raw_feats)
+            placed = False
+            # attach under overt cues (dict keys) and unstarred string cues
+            for f in raw_feats:
+                if isinstance(f, dict):
+                    cue = next(iter(f.keys()))
+                elif isinstance(f, str) and not f.startswith('*'):
+                    cue = f
+                else:
+                    continue
+                for target in spine.find_nodes(cue):
+                    target.add_child(node)
+                    placed = True
+            if not placed:
+                spine.add_child(node)
+# Helper to generate valid Python class names for each PP
+def _create_class_name(pp: str) -> str:
+    parts = re.split(r"\W+", pp)
+    return 'PP_' + ''.join(p.title() for p in parts if p)
 
+# Factory to create PP subclasses dynamically
+class PPFactory:
+    def __init__(self, atomic_path: str, p_lexicon_path: str, complex_path: str,
+                 path_set: set, place_set: set):
+        atomic = load_json(atomic_path)
+        plex  = load_json(p_lexicon_path)
+        lex = {**plex, **atomic}
+        PPBase.configure(lex, path_set, place_set)
+        self.pp_list = load_json(complex_path)
+        self.classes = {}
 
+    def create_classes(self) -> Dict[str, type]:
+        for pp in self.pp_list:
+            name = _create_class_name(pp)
+            NewClass = type(name, (PPBase,), {})
+            self.classes[pp] = NewClass
+        return self.classes
 
-def main():
-    PATH_LEMMA_SET = {'to','from','into','onto','through','across','toward','past'}
-    PLACE_LEMMA_SET = {'in','on','at','under','beside','near','between','among'}
+    def instantiate_all(self) -> Dict[str, PPBase]:
+        return {pp: Cls(pp) for pp, Cls in self.classes.items()}
 
-    decomposer = PPDecomposer(
-        'pp_lexicon/atomic_p.json',
-        'pp_lexicon/p_lexicon.json',
-        'pp_lexicon/complex_pp.json',
-        PATH_LEMMA_SET,
-        PLACE_LEMMA_SET
-    )
-    trees = decomposer.decompose_all()
-    for pp, tree in trees.items():
-        print(f"PP: {pp}")
-        # print(tree)
-        print(tree.pretty_print())
+# Extend PPFactory to export decomposed lexicon
+class PPFactory:
+    def __init__(self, atomic_path: str, p_lexicon_path: str, complex_path: str,
+                 path_set: set, place_set: set):
+        atomic = load_json(atomic_path)
+        plex  = load_json(p_lexicon_path)
+        self.lex = {**plex, **atomic}
+        PPBase.configure(self.lex, path_set, place_set)
+        self.pp_list = load_json(complex_path)
+        self.classes = {}
 
-if __name__ == '__main__':
-    main()
+    def create_classes(self) -> Dict[str, type]:
+        for pp in self.pp_list:
+            name = _create_class_name(pp)
+            NewClass = type(name, (PPBase,), {})
+            self.classes[pp] = NewClass
+        return self.classes
+
+    def instantiate_all(self) -> Dict[str, PPBase]:
+        return {pp: Cls(pp) for pp, Cls in self.classes.items()}
+
+    def export_complex_pp(self, outpath: str):
+        # Build entries for each PP
+        instances = self.instantiate_all()
+        result = {}
+        SPINE_ORDER = ['Path','p','Proj','Deg','AxPart','K','D']
+        for pp, obj in instances.items():
+            segs = obj.tokens
+            classes = []
+            raw_heads = []
+            roles = []
+            meas = False
+            unlex = []
+            for s in segs:
+                entry = self.lex.get(s)
+                if entry:
+                    cls = entry.get('class')
+                    if cls:
+                        classes.extend(cls if isinstance(cls, list) else [cls])
+                    for f in entry.get('spellOutHEAD', []):
+                        raw_heads.append((s, f))
+                    role = entry.get('path_p_morphology')
+                    if role is not None:
+                        roles.append(role)
+                    if entry.get('measure_allowed'):
+                        meas = True
+                else:
+                    unlex.append(s)
+            is_atomic = len(segs)==1 and self.lex.get(segs[0],{}).get('isAtomicMorph',False)
+            # build final spellOutHEAD
+            final_heads = []
+            for chunk, f in raw_heads:
+                if isinstance(f, dict):
+                    final_heads.append(f)
+                elif isinstance(f, str) and not f.startswith('*'):
+                    final_heads.append({f: chunk})
+                elif isinstance(f, str) and f.startswith('*'):
+                    final_heads.append(f)
+            seen = set(); uniq_heads = []
+            for h in final_heads:
+                key = json.dumps(h) if isinstance(h, dict) else h
+                if key not in seen:
+                    seen.add(key); uniq_heads.append(h)
+            uniq_heads.sort(key=lambda h: SPINE_ORDER.index(next(iter(h.keys())) if isinstance(h, dict) else h.lstrip('*')), reverse=True)
+            flat_roles = []
+            for r in roles:
+                if isinstance(r, list):
+                    for v in r:
+                        if v not in flat_roles:
+                            flat_roles.append(v)
+                else:
+                    if r not in flat_roles:
+                        flat_roles.append(r)
+            entry = {
+                'isAtomicMorph': is_atomic,
+                'class': classes or None,
+                'spellOutHEAD': uniq_heads,
+                'path_p_morphology': flat_roles or None,
+                'measure_allowed': meas
+            }
+            if unlex:
+                entry['unlexicalized'] = unlex
+            result[pp] = entry
+        with open(outpath, 'w', encoding='utf-8') as f:
+            json.dump(result, f, indent=2)
+
+# Example usage
+if __name__=='__main__':
+    PATH={'to','from','into','onto','through','across','toward','past'}
+    PLACE={'in','on','at','under','beside','near','between','among'}
+    factory = PPFactory('pp_lexicon/atomic_p.json', 'pp_lexicon/p_lexicon.json', 'pp_lexicon/complex_pp.json', PATH, PLACE)
+    factory.create_classes()
+    # Export the augmented lexicon
+    factory.export_complex_pp('complex_pp_expanded.json')
+    print("Wrote complex_pp_expanded.json")

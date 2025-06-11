@@ -1,0 +1,7 @@
+Paper title:  The REAL Corpus: A Crowd-Sourced Corpus of Human Generated and Evaluated Spatial References to Real-World Urban Scenes 
+
+Authors: Phil Bartie, William Mackaness, Dimitra Gkatzia and Verena Rieser 
+
+Conference Name: LREC2016
+Conference Date: 23-28 May 2016
+Conference Location: Portorož (Slovenia)

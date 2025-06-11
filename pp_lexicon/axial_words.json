@@ -1,5 +1,5 @@
-{
-    "words": [
+
+    [
         "front",
         "back",
         "left",
@@ -27,4 +27,3 @@
         "subsequent",
         "cross"
     ]
-}
