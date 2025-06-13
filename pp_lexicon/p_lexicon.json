@@ -272,7 +272,7 @@
         "spellOutHEAD": [
             "K",
             {
-                "AxPart": "[BACK_SEQUENTIAL_DYNAMIC]"
+                "AxPart": "[BACK_SEQUENTIAL]"
             },
             "*Deg",
             "*Proj"

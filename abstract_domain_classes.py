@@ -7,34 +7,31 @@ def load_json(path: str) -> Dict:
     with open(path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-# Semantic classification function
+# pp -> PathP or PlaceP
 def classify_pp(head: str,
                 path_set: set,
                 place_set: set,
                 lex: Dict[str, Dict]) -> str:
-    """
-    Classifies a PP as PathP or PlaceP, correctly handling lists and
-    null values in path_p_morphology.
-    """
+    
     if head in path_set:
         return 'PathP'
     if head in place_set:
         return 'PlaceP'
     
-    # Get the morphology entry from the lexicon
+    # morphology entry from the lexicon
     morphology = lex.get(head, {}).get('path_p_morphology', [])
     
-    # Standardize the entry to a set for easy processing
+    # standardize entry
     if isinstance(morphology, str):
         roles = {morphology}
     else:
         roles = set(morphology)
         
-    # Filter out non-spatial/null values before checking
+    # filter non-spatial/null values before checking
     roles.discard('none')
     roles.discard(None)
     
-    # Check if any valid spatial roles remain
+    
     return 'PathP' if roles & {'GOAL', 'SOURCE', 'ROUTE'} else 'PlaceP'
 
 
@@ -77,7 +74,7 @@ class NSNode:
             s += c.__repr__(level+1)
         return s
 
-# base class for any Prepositional Phrase
+# base class for any PP
 class PPBase:
     lex: Dict[str, Dict]
     lex_keys: set
@@ -85,7 +82,6 @@ class PPBase:
     place_set: set
     SPINE = ['p', 'Deg', 'Proj', 'AxPart', 'K', 'D']
     
-    # Class-level sorted keys for efficient reuse in segmentation
     sorted_lex_keys: List[str] = []
 
     @classmethod
@@ -105,12 +101,9 @@ class PPBase:
         self.attach_lexical_items(self.ns_root)
         self.tree = self.ns_root.to_nltk_tree()
 
-    # --- NEW HELPER METHOD FOR CLASS CHECKING ---
+
     def is_spatial(self, token: str) -> bool:
-        """
-        Checks if a token has a spatial class, ignoring NOT_SPATIAL if other
-        spatial classes are present.
-        """
+        
         SPATIAL_CLASSES = {'PROJECTIVE', 'BOUNDED', 'EXTENDED', 'PARTICLE'}
         entry = self.lex.get(token, {})
         class_info = entry.get('class', 'NOT_SPATIAL')
@@ -141,28 +134,25 @@ class PPBase:
                 i += 1
         return segments
 
-    # --- REFINED MORPHOLOGICAL SEGMENTATION ---
+    # recursive segmenter for morphemes
     def _morph_segment(self, token: str) -> List[str]:
-        """
-        A recursive segmenter that first tries to match known morpheme prefixes,
-        then checks for substrings of larger keys, before falling back.
-        """
+        
         if not token:
             return []
 
-        # 1. Try to match a known morpheme from the start of the token
+        #  match a known morpheme from the start of the token
         for key in self.sorted_lex_keys:
             if token.startswith(key):
                 remainder = token[len(key):]
                 return [key] + self._morph_segment(remainder)
         
-        # 2. If no prefix match, check if token is a substring of a larger key
+        # if no prefix match, check if token is a substring of a larger key
         for key in self.sorted_lex_keys:
             if token in key and len(token) < len(key):
-                # e.g., 'cross' is a substring of 'across'. Treat as a valid segment.
+                # e.g., 'cross' is a substring of 'across'
                 return [token]
 
-        # 3. If no match at all, it's an unknown chunk
+        # if no match, unknown chunk
         return [token]
 
     def build_spine(self) -> NSNode:
@@ -196,31 +186,31 @@ class PPBase:
                 spine.add_child(node)
                 
                 
-# Helper to generate valid Python class names for each PP
+# generate valid Python class names for each PP class
 def _create_class_name(pp: str) -> str:
     parts = re.split(r"\W+", pp)
     return 'PP_' + ''.join(p.title() for p in parts if p)
 
-# Factory to create PP subclasses dynamically
-class PPFactory:
-    def __init__(self, atomic_path: str, p_lexicon_path: str, complex_path: str,
-                 path_set: set, place_set: set):
-        atomic = load_json(atomic_path)
-        plex  = load_json(p_lexicon_path)
-        lex = {**plex, **atomic}
-        PPBase.configure(lex, path_set, place_set)
-        self.pp_list = load_json(complex_path)
-        self.classes = {}
+# # factory to create PP subclasses dynamically
+# class PPFactory:
+#     def __init__(self, atomic_path: str, p_lexicon_path: str, complex_path: str,
+#                  path_set: set, place_set: set):
+#         atomic = load_json(atomic_path)
+#         plex  = load_json(p_lexicon_path)
+#         lex = {**plex, **atomic}
+#         PPBase.configure(lex, path_set, place_set)
+#         self.pp_list = load_json(complex_path)
+#         self.classes = {}
 
-    def create_classes(self) -> Dict[str, type]:
-        for pp in self.pp_list:
-            name = _create_class_name(pp)
-            NewClass = type(name, (PPBase,), {})
-            self.classes[pp] = NewClass
-        return self.classes
+#     def create_classes(self) -> Dict[str, type]:
+#         for pp in self.pp_list:
+#             name = _create_class_name(pp)
+#             NewClass = type(name, (PPBase,), {})
+#             self.classes[pp] = NewClass
+#         return self.classes
 
-    def instantiate_all(self) -> Dict[str, PPBase]:
-        return {pp: Cls(pp) for pp, Cls in self.classes.items()}
+#     def instantiate_all(self) -> Dict[str, PPBase]:
+#         return {pp: Cls(pp) for pp, Cls in self.classes.items()}
 
 # Extend PPFactory to export decomposed lexicon
 class PPFactory:
@@ -260,7 +250,7 @@ class PPFactory:
             for s in segs:
                 entry = self.lex.get(s)
 
-                # --- substring‐to‐lexicon mapping (e.g. 'cross' → 'across') ---
+                # substring‐to‐lexicon mapping: 
                 if entry is None:
                     mapped_key = next((k for k in self.lex.keys() if s in k), None)
                     if mapped_key:
@@ -273,7 +263,7 @@ class PPFactory:
                     if cls:
                         classes.extend(cls if isinstance(cls, list) else [cls])
 
-                    # collect raw spellOutHEAD cues
+                    # collect raw spellOutHEAD
                     for f in entry.get('spellOutHEAD', []):
                         raw_heads.append((s, f))
 
@@ -288,7 +278,7 @@ class PPFactory:
                 else:
                     unlex.append(s)
 
-            # --- refine classes: drop 'NOT_SPATIAL' when any other class is present ---
+            # refine classes: drop 'NOT_SPATIAL' when any other class is present 
             if classes:
                 non_ns = [c for c in classes if c != 'NOT_SPATIAL']
                 if non_ns:
@@ -297,20 +287,17 @@ class PPFactory:
             is_atomic = (len(segs) == 1 and
                          self.lex.get(segs[0], {}).get('isAtomicMorph', False))
 
-            # --- build final spellOutHEAD: mapping overt cues and collecting starred cues ---
+            # final spellOutHEAD: mapping overt and collec starred
             mapped = []
             starred = []
             for chunk, f in raw_heads:
                 if isinstance(f, dict):
-                    # overt dict cue, keep as-is
                     mapped.append(f)
                 elif isinstance(f, str) and not f.startswith('*'):
-                    # overt string cue, map to chunk
                     cue = f
                     if cue in SPINE_ORDER:
                         mapped.append({cue: chunk})
                 elif isinstance(f, str) and f.startswith('*'):
-                    # non-overt cue
                     starred.append(f)
 
             # merge and dedupe
@@ -332,7 +319,7 @@ class PPFactory:
                 return SPINE_ORDER.index(cue) if cue in SPINE_ORDER else len(SPINE_ORDER)
             uniq_heads.sort(key=head_index, reverse=True)
 
-            # --- refine spellOutHEAD: remove starred cues that duplicate overt cues ---
+            #  remove starred el that duplicates
             filtered_heads = []
             seen_cues = set()
             for h in uniq_heads:
@@ -348,7 +335,7 @@ class PPFactory:
                     seen_cues.add(cue)
             uniq_heads = filtered_heads
 
-            # --- flatten and dedupe path_p_morphology ---
+            # flatten and deduplicate path_p_morphology
             flat_roles = []
             for r in roles:
                 if isinstance(r, list):
@@ -359,13 +346,13 @@ class PPFactory:
                     if r not in flat_roles:
                         flat_roles.append(r)
 
-            # --- refine path_p_morphology: drop 'none' when any other role is present ---
+            # refine path_p_morphology: drop 'none' when any other role is present
             if flat_roles:
                 non_none = [r for r in flat_roles if r != 'none']
                 if non_none:
                     flat_roles = non_none
 
-            # build the final entry
+            # final entry
             entry = {
                 'isAtomicMorph': is_atomic,
                 'class': classes or None,
