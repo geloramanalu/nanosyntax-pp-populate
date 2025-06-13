@@ -1,3 +1,7 @@
 node_modules/
 tf-env-final/
 .venv-benepar
+model/
+dataset/OPUSMT/
+dataset/REAL_Corpus/depre_real_corpus_no_symbol.pcfg
+dataset/REAL_Corpus/unique_split_annotations.csv
